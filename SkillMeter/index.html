@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script src="jquery.js"></script>
+    <script src="chrono.js"></script>
+
+    <button id="start">Start</button>
+    <span id="chronotime">0:00:00:00</span>
+
+    <!--start and stop button (chronotime)-->
+    <form name="chronoForm">
+        <input type="hidden" name="startstop" value="start!" onClick="chronoStart()" disabled />
+        <input type="hidden" name="reset" value="reset!" onClick="chronoReset()" disabled/>
+    </form>
+
+    <div>
+        <input type="hidden" id="button">
+    </div>
+
+    <script>
+        var counter = 1;
+        $('#start').click(function () {
+            chronoStart();
+            $("#start").prop('disabled', true);
+            $('#button').attr("type","button").css({"margin-left":Math.floor((Math.random() * 250) + 1),
+                "margin-right":Math.floor((Math.random() * 250) + 1),
+                "margin-top":Math.floor((Math.random() * 250) + 1),
+                "color": "rgb("+Math.floor((Math.random() * 255) + 1)+","+
+                    Math.floor((Math.random() * 255) + 1)+","+
+                    Math.floor((Math.random() * 255) + 1)+")"}).attr("value","B"+counter);
+            counter++;
+        });
+        $('#button').click(function () {
+            if(counter<10){
+                $('#button').attr("type","button").css({"margin-left":Math.floor((Math.random() * 250) + 1),
+                    "margin-right":Math.floor((Math.random() * 250) + 1),
+                    "margin-top":Math.floor((Math.random() * 250) + 1),
+                    "color": "rgb("+Math.floor((Math.random() * 255) + 1)+","+
+                        Math.floor((Math.random() * 255) + 1)+","+
+                        Math.floor((Math.random() * 255) + 1)+")"}).attr("value","B"+counter);
+                counter++;
+            }
+            else{
+                $('#button').attr("type","hidden");
+                chronoStop();
+                alert("Total time : "+$('#chronotime').html()+"\n Mean time : "+meanTime.toFixed(2) +" s");
+                $("#start").prop('disabled', false);
+                chronoReset()
+            }
+        });
+    </script>
+</body>
+</html>
