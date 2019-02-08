@@ -49,7 +49,8 @@
                 chronoStop();
                 alert("Total time : "+$('#chronotime').html()+"\n Mean time : "+meanTime.toFixed(2) +" s");
                 $("#start").prop('disabled', false);
-                chronoReset()
+                chronoReset();
+                counter = 1;
             }
         });
     </script>
